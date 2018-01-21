@@ -35,7 +35,9 @@ type Location interface {
 	Domain(...string) string
 	Title(...string) string
 	ThumbnailUrl(...string) string
-	FsPath(...string) string
+	Url(...string) string
+	PathFromDocRoot(...string) string
+	Filename(...string) string
 }
 
 type Page interface {
@@ -50,7 +52,6 @@ type Page interface {
 	Content(...string) string
 	ImageUrl(...string) string
 	DisqusId(...string) string
-	FsFilename(...string) string
 	GetDoc() *htmlDoc.HtmlDoc
 }
 
