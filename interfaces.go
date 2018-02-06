@@ -37,7 +37,7 @@ type Location interface {
 	ThumbnailUrl(...string) string
 	Url(...string) string
 	PathFromDocRoot(...string) string
-	Filename(...string) string
+	HtmlFilename(...string) string
 }
 
 type Page interface {
