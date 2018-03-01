@@ -22,7 +22,6 @@ type Context interface {
 	GetCssUrl() string
 	GetCss() string
 	GetRssUrl() string
-	GetHomeUrl() string
 	GetDisqusShortname() string
 	GetMainNavigationLocations() []Location
 	GetReadNavigationLocations() []Location
@@ -74,6 +73,7 @@ type ContextDto interface {
 	Css(...string) string
 	Domain(...string) string
 	DisqusId(...string) string
+	TargetDir(...string) string
 }
 
 type Page interface {
