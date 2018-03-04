@@ -5,6 +5,14 @@ import (
 	"github.com/ingmardrewing/htmlDoc"
 )
 
+type CommonData interface {
+	AddMain(Location)
+	Main() []Location
+	AddMarginal(Location)
+	Marginal() []Location
+	ContextDto() ContextDto
+}
+
 type ContextGroup interface {
 	RenderPages(string) []fs.FileContainer
 	GetComponents() []Component
