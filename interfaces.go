@@ -5,6 +5,19 @@ import (
 	"github.com/ingmardrewing/htmlDoc"
 )
 
+type CommonData interface {
+	AddMain(Location)
+	Main() []Location
+	AddMarginal(Location)
+	Marginal() []Location
+	ContextDto() ContextDto
+}
+
+type ContextGroup interface {
+	RenderPages(string) []fs.FileContainer
+	GetComponents() []Component
+}
+
 type Context interface {
 	GetTwitterHandle() string
 	GetContentSection() string
@@ -17,18 +30,19 @@ type Context interface {
 	GetCssUrl() string
 	GetCss() string
 	GetRssUrl() string
-	GetHomeUrl() string
 	GetDisqusShortname() string
 	GetMainNavigationLocations() []Location
 	GetReadNavigationLocations() []Location
 	GetFooterNavigationLocations() []Location
 	GetElements() []Page
 	SetElements([]Page)
+	SetContextDto(ContextDto)
+	FsSetOff(...string) string
+	AddRss()
 	AddComponent(c Component)
 	GetComponents() []Component
 	RenderPages(targetDir string) []fs.FileContainer
 	AddPage(p Page)
-	SetGlobalFields(twitterHandle, topic, tags, site, cardType, section, fbPage, twitterPage, cssUrl, rssUrl, home, disqusShortname string)
 }
 
 type Location interface {
@@ -40,8 +54,7 @@ type Location interface {
 	HtmlFilename(...string) string
 }
 
-type Page interface {
-	Location
+type PageContent interface {
 	Id(...int) int
 	AcceptVisitor(v Component)
 	AddBodyNodes([]*htmlDoc.Node)
@@ -53,6 +66,33 @@ type Page interface {
 	ImageUrl(...string) string
 	DisqusId(...string) string
 	GetDoc() *htmlDoc.HtmlDoc
+}
+
+type ContextDto interface {
+	TwitterHandle(...string) string
+	Topic(...string) string
+	Tags(...string) string
+	Site(...string) string
+	CardType(...string) string
+	Section(...string) string
+	FBPage(...string) string
+	TwitterPage(...string) string
+	Rss(...string) string
+	Css(...string) string
+	Domain(...string) string
+	DisqusId(...string) string
+	TargetDir(...string) string
+}
+
+type Page interface {
+	Location
+	PageContent
+}
+
+type NaviPage interface {
+	Location
+	PageContent
+	NavigatedPages(...Page) []Page
 }
 
 type Component interface {
