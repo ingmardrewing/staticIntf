@@ -5,12 +5,17 @@ import (
 	"github.com/ingmardrewing/htmlDoc"
 )
 
-type CommonData interface {
+type Site interface {
 	AddMain(Location)
 	Main() []Location
 	AddMarginal(Location)
 	Marginal() []Location
 	ContextDto() ContextDto
+
+	Posts() []Page
+	Pages() []Page
+	Marginals() []Page
+	Narratives() []Page
 }
 
 type ContextGroup interface {
@@ -19,6 +24,8 @@ type ContextGroup interface {
 }
 
 type Context interface {
+	AddComponents(...Component)
+	CommonData() Site
 	GetTwitterHandle() string
 	GetContentSection() string
 	GetContentTags() string
@@ -29,19 +36,17 @@ type Context interface {
 	GetTwitterPage() string
 	GetCssUrl() string
 	GetCss() string
-	GetRssUrl() string
 	GetDisqusShortname() string
 	GetMainNavigationLocations() []Location
 	GetReadNavigationLocations() []Location
 	GetFooterNavigationLocations() []Location
 	GetElements() []Page
 	SetElements([]Page)
-	SetContextDto(ContextDto)
 	FsSetOff(...string) string
-	AddRss()
 	AddComponent(c Component)
 	GetComponents() []Component
 	RenderPages(targetDir string) []fs.FileContainer
+	GetPages() []Page
 	AddPage(p Page)
 }
 
