@@ -38,7 +38,6 @@ type ContextGroup interface {
 
 type Context interface {
 	AddComponents(...Component)
-	CommonData() Site
 	GetTwitterHandle() string
 	GetContentSection() string
 	GetContentTags() string
@@ -61,6 +60,7 @@ type Context interface {
 	RenderPages() []fs.FileContainer
 	GetPages() []Page
 	AddPage(p Page)
+	SiteDto() Site
 }
 
 type Location interface {
