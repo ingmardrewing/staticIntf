@@ -10,16 +10,29 @@ type Site interface {
 	Main() []Location
 	AddMarginal(Location)
 	Marginal() []Location
-	ContextDto() ContextDto
 
 	Posts() []Page
 	Pages() []Page
 	Marginals() []Page
 	Narratives() []Page
+
+	TwitterHandle() string
+	Topic() string
+	Tags() string
+	Site() string
+	CardType() string
+	Section() string
+	FBPage() string
+	TwitterPage() string
+	Rss() string
+	Css() string
+	Domain() string
+	DisqusId() string
+	TargetDir() string
 }
 
 type ContextGroup interface {
-	RenderPages(string) []fs.FileContainer
+	RenderPages() []fs.FileContainer
 	GetComponents() []Component
 }
 
@@ -45,7 +58,7 @@ type Context interface {
 	FsSetOff(...string) string
 	AddComponent(c Component)
 	GetComponents() []Component
-	RenderPages(targetDir string) []fs.FileContainer
+	RenderPages() []fs.FileContainer
 	GetPages() []Page
 	AddPage(p Page)
 }
@@ -71,22 +84,6 @@ type PageContent interface {
 	ImageUrl(...string) string
 	DisqusId(...string) string
 	GetDoc() *htmlDoc.HtmlDoc
-}
-
-type ContextDto interface {
-	TwitterHandle(...string) string
-	Topic(...string) string
-	Tags(...string) string
-	Site(...string) string
-	CardType(...string) string
-	Section(...string) string
-	FBPage(...string) string
-	TwitterPage(...string) string
-	Rss(...string) string
-	Css(...string) string
-	Domain(...string) string
-	DisqusId(...string) string
-	TargetDir(...string) string
 }
 
 type Page interface {
