@@ -65,11 +65,16 @@ type Context interface {
 
 type Location interface {
 	Domain(...string) string
-	Title(...string) string
-	ThumbnailUrl(...string) string
-	Url(...string) string
 	PathFromDocRoot(...string) string
 	HtmlFilename(...string) string
+
+	Title(...string) string
+	ThumbnailUrl(...string) string
+
+	// Complete Url including protocol, domain, port (if any),
+	// path from docroot and filename.
+	// Derived from other fields of Location.
+	Url() string
 }
 
 type PageContent interface {
