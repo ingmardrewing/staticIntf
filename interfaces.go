@@ -70,11 +70,16 @@ type Location interface {
 
 	Title(...string) string
 	ThumbnailUrl(...string) string
+	ExternalLink(...string) string
 
 	// Complete Url including protocol, domain, port (if any),
 	// path from docroot and filename.
 	// Derived from other fields of Location.
 	Url() string
+
+	// Compose path from doc root including
+	// the filename.
+	PathFromDocRootWithName() string
 }
 
 type PageContent interface {
@@ -88,6 +93,8 @@ type PageContent interface {
 	Content(...string) string
 	ImageUrl(...string) string
 	DisqusId(...string) string
+	ThumbBase64(...string) string
+	Category(...string) string
 	GetDoc() *htmlDoc.HtmlDoc
 }
 
