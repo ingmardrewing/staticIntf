@@ -5,20 +5,39 @@ import (
 	"github.com/ingmardrewing/htmlDoc"
 )
 
-type CommonData interface {
+type Site interface {
 	AddMain(Location)
 	Main() []Location
 	AddMarginal(Location)
 	Marginal() []Location
-	ContextDto() ContextDto
+
+	Posts() []Page
+	Pages() []Page
+	Marginals() []Page
+	Narratives() []Page
+
+	TwitterHandle() string
+	Topic() string
+	Tags() string
+	Site() string
+	CardType() string
+	Section() string
+	FBPage() string
+	TwitterPage() string
+	Rss() string
+	Css() string
+	Domain() string
+	DisqusId() string
+	TargetDir() string
 }
 
 type ContextGroup interface {
-	RenderPages(string) []fs.FileContainer
+	RenderPages() []fs.FileContainer
 	GetComponents() []Component
 }
 
 type Context interface {
+	AddComponents(...Component)
 	GetTwitterHandle() string
 	GetContentSection() string
 	GetContentTags() string
@@ -29,29 +48,38 @@ type Context interface {
 	GetTwitterPage() string
 	GetCssUrl() string
 	GetCss() string
-	GetRssUrl() string
 	GetDisqusShortname() string
 	GetMainNavigationLocations() []Location
 	GetReadNavigationLocations() []Location
 	GetFooterNavigationLocations() []Location
 	GetElements() []Page
 	SetElements([]Page)
-	SetContextDto(ContextDto)
 	FsSetOff(...string) string
-	AddRss()
 	AddComponent(c Component)
 	GetComponents() []Component
-	RenderPages(targetDir string) []fs.FileContainer
+	RenderPages() []fs.FileContainer
+	GetPages() []Page
 	AddPage(p Page)
+	SiteDto() Site
 }
 
 type Location interface {
 	Domain(...string) string
-	Title(...string) string
-	ThumbnailUrl(...string) string
-	Url(...string) string
 	PathFromDocRoot(...string) string
 	HtmlFilename(...string) string
+
+	Title(...string) string
+	ThumbnailUrl(...string) string
+	ExternalLink(...string) string
+
+	// Complete Url including protocol, domain, port (if any),
+	// path from docroot and filename.
+	// Derived from other fields of Location.
+	Url() string
+
+	// Compose path from doc root including
+	// the filename.
+	PathFromDocRootWithName() string
 }
 
 type PageContent interface {
@@ -65,23 +93,9 @@ type PageContent interface {
 	Content(...string) string
 	ImageUrl(...string) string
 	DisqusId(...string) string
+	ThumbBase64(...string) string
+	Category(...string) string
 	GetDoc() *htmlDoc.HtmlDoc
-}
-
-type ContextDto interface {
-	TwitterHandle(...string) string
-	Topic(...string) string
-	Tags(...string) string
-	Site(...string) string
-	CardType(...string) string
-	Section(...string) string
-	FBPage(...string) string
-	TwitterPage(...string) string
-	Rss(...string) string
-	Css(...string) string
-	Domain(...string) string
-	DisqusId(...string) string
-	TargetDir(...string) string
 }
 
 type Page interface {
