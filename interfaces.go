@@ -15,6 +15,7 @@ type Site interface {
 	Pages() []Page
 	Marginals() []Page
 	Narratives() []Page
+	NarrativeMarginals() []Page
 
 	TwitterHandle() string
 	Topic() string
