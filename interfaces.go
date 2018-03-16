@@ -12,6 +12,7 @@ type Site interface {
 	Marginal() []Location
 
 	Posts() []Page
+	PostNaviPages() []Page
 	Pages() []Page
 	Marginals() []Page
 	Narratives() []Page
@@ -25,7 +26,8 @@ type Site interface {
 	Section() string
 	FBPage() string
 	TwitterPage() string
-	Rss() string
+	RssPath() string
+	RssFilename() string
 	Css() string
 	Domain() string
 	DisqusId() string
@@ -37,7 +39,7 @@ type ContextGroup interface {
 	GetComponents() []Component
 }
 
-type Context interface {
+type SubContext interface {
 	AddComponents(...Component)
 	GetTwitterHandle() string
 	GetContentSection() string
@@ -114,5 +116,5 @@ type Component interface {
 	VisitPage(p Page)
 	GetCss() string
 	GetJs() string
-	SetContext(context Context)
+	SetContext(context SubContext)
 }
