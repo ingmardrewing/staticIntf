@@ -34,7 +34,7 @@ type Site interface {
 	TargetDir() string
 }
 
-type ContextGroup interface {
+type Context interface {
 	RenderPages() []fs.FileContainer
 	GetComponents() []Component
 }
@@ -116,5 +116,5 @@ type Component interface {
 	VisitPage(p Page)
 	GetCss() string
 	GetJs() string
-	SetContext(context Renderer)
+	SetContext(Renderer)
 }
