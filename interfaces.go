@@ -34,13 +34,16 @@ type Site interface {
 	TargetDir() string
 }
 
-type ContextGroup interface {
+type Context interface {
 	RenderPages() []fs.FileContainer
 	GetComponents() []Component
 }
 
-type SubContext interface {
+type Renderer interface {
 	AddComponents(...Component)
+	AddComponent(c Component)
+	GetComponents() []Component
+
 	GetTwitterHandle() string
 	GetContentSection() string
 	GetContentTags() string
@@ -55,13 +58,10 @@ type SubContext interface {
 	GetMainNavigationLocations() []Location
 	GetReadNavigationLocations() []Location
 	GetFooterNavigationLocations() []Location
-	GetElements() []Page
-	SetElements([]Page)
-	FsSetOff(...string) string
-	AddComponent(c Component)
-	GetComponents() []Component
-	RenderPages() []fs.FileContainer
 	GetPages() []Page
+	SetPages([]Page)
+	FsSetOff(...string) string
+	Render() []fs.FileContainer
 	AddPage(p Page)
 	SiteDto() Site
 }
@@ -116,5 +116,5 @@ type Component interface {
 	VisitPage(p Page)
 	GetCss() string
 	GetJs() string
-	SetContext(context SubContext)
+	SetContext(Renderer)
 }
