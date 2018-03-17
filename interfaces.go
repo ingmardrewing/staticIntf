@@ -41,6 +41,9 @@ type ContextGroup interface {
 
 type Renderer interface {
 	AddComponents(...Component)
+	AddComponent(c Component)
+	GetComponents() []Component
+
 	GetTwitterHandle() string
 	GetContentSection() string
 	GetContentTags() string
@@ -58,8 +61,6 @@ type Renderer interface {
 	GetPages() []Page
 	SetPages([]Page)
 	FsSetOff(...string) string
-	AddComponent(c Component)
-	GetComponents() []Component
 	Render() []fs.FileContainer
 	AddPage(p Page)
 	SiteDto() Site
