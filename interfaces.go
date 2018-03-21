@@ -85,29 +85,23 @@ type Location interface {
 }
 
 type PageContent interface {
-	Id(...int) int
-	AcceptVisitor(v Component)
-	AddBodyNodes([]*htmlDoc.Node)
-	AddHeaderNodes([]*htmlDoc.Node)
-
-	PublishedTime(...string) string
-	Description(...string) string
-	Content(...string) string
-	ImageUrl(...string) string
-	DisqusId(...string) string
-	ThumbBase64(...string) string
-	Category(...string) string
+	Id() int
+	PublishedTime() string
+	Description() string
+	Content() string
+	ImageUrl() string
+	DisqusId() string
+	ThumbBase64() string
+	Category() string
 	GetDoc() *htmlDoc.HtmlDoc
 }
 
 type Page interface {
 	Location
 	PageContent
-}
-
-type NaviPage interface {
-	Location
-	PageContent
+	AcceptVisitor(v Component)
+	AddBodyNodes([]*htmlDoc.Node)
+	AddHeaderNodes([]*htmlDoc.Node)
 	NavigatedPages(...Page) []Page
 }
 
