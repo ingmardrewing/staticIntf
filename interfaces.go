@@ -5,6 +5,25 @@ import (
 	"github.com/ingmardrewing/htmlDoc"
 )
 
+type PageDto interface {
+	Id() int
+	Title() string
+	TitlePlain() string
+	ThumbUrl() string
+	ImageUrl() string
+	Description() string
+	DisqusId() string
+	CreateDate() string
+	Content() string
+	Category() string
+	Url() string
+	Domain() string
+	PathFromDocRoot() string
+	FsPath() string
+	HtmlFilename() string
+	ThumbBase64() string
+}
+
 type Site interface {
 	AddMain(Location)
 	Main() []Location
