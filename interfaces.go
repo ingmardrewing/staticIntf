@@ -41,29 +41,28 @@ type Context interface {
 
 type Renderer interface {
 	AddComponents(...Component)
-	AddComponent(c Component)
-	GetComponents() []Component
+	Components() []Component
 
-	GetTwitterHandle() string
-	GetContentSection() string
-	GetContentTags() string
-	GetSiteName() string
-	GetTwitterCardType() string
-	GetOGType() string
-	GetFBPageUrl() string
-	GetTwitterPage() string
-	GetCssUrl() string
-	GetCss() string
-	GetDisqusShortname() string
-	GetMainNavigationLocations() []Location
-	GetReadNavigationLocations() []Location
-	GetFooterNavigationLocations() []Location
-	GetPages() []Page
-	SetPages([]Page)
+	Site() Site
+	TwitterHandle() string
+	ContentSection() string
+	ContentTags() string
+	SiteName() string
+	TwitterCardType() string
+	OGType() string
+	FBPageUrl() string
+	TwitterPage() string
+	CssUrl() string
+	Css() string
+	DisqusShortname() string
+	MainNavigationLocations() []Location
+	ReadNavigationLocations() []Location
+	FooterNavigationLocations() []Location
 	FsSetOff(...string) string
+	Pages(...Page) []Page
+	AddPage(Page)
+
 	Render() []fs.FileContainer
-	AddPage(p Page)
-	SiteDto() Site
 }
 
 type Location interface {
@@ -86,35 +85,29 @@ type Location interface {
 }
 
 type PageContent interface {
-	Id(...int) int
-	AcceptVisitor(v Component)
-	AddBodyNodes([]*htmlDoc.Node)
-	AddHeaderNodes([]*htmlDoc.Node)
-
-	PublishedTime(...string) string
-	Description(...string) string
-	Content(...string) string
-	ImageUrl(...string) string
-	DisqusId(...string) string
-	ThumbBase64(...string) string
-	Category(...string) string
+	Id() int
+	PublishedTime() string
+	Description() string
+	Content() string
+	ImageUrl() string
+	DisqusId() string
+	ThumbBase64() string
+	Category() string
 	GetDoc() *htmlDoc.HtmlDoc
 }
 
 type Page interface {
 	Location
 	PageContent
-}
-
-type NaviPage interface {
-	Location
-	PageContent
+	AcceptVisitor(v Component)
+	AddBodyNodes([]*htmlDoc.Node)
+	AddHeaderNodes([]*htmlDoc.Node)
 	NavigatedPages(...Page) []Page
 }
 
 type Component interface {
-	VisitPage(p Page)
+	VisitPage(Page)
 	GetCss() string
 	GetJs() string
-	SetContext(Renderer)
+	Renderer(...Renderer) Renderer
 }
