@@ -62,7 +62,9 @@ type Renderer interface {
 	AddComponents(...Component)
 	Components() []Component
 
-	Site() Site
+	Pages(...Page) []Page
+	AddPage(Page)
+
 	TwitterHandle() string
 	ContentSection() string
 	ContentTags() string
@@ -74,13 +76,9 @@ type Renderer interface {
 	CssUrl() string
 	Css() string
 	DisqusShortname() string
-	MainNavigationLocations() []Location
-	ReadNavigationLocations() []Location
-	FooterNavigationLocations() []Location
-	FsSetOff(...string) string
-	Pages(...Page) []Page
-	AddPage(Page)
 
+	MainNavigationLocations() []Location
+	FooterNavigationLocations() []Location
 	Render() []fs.FileContainer
 }
 
