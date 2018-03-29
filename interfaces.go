@@ -24,19 +24,7 @@ type PageDto interface {
 	ThumbBase64() string
 }
 
-type Site interface {
-	AddMain(Location)
-	Main() []Location
-	AddMarginal(Location)
-	Marginal() []Location
-
-	Posts() []Page
-	PostNaviPages() []Page
-	Pages() []Page
-	Marginals() []Page
-	Narratives() []Page
-	NarrativeMarginals() []Page
-
+type ConfigContainer interface {
 	TwitterHandle() string
 	Topic() string
 	Tags() string
@@ -51,6 +39,28 @@ type Site interface {
 	Domain() string
 	DisqusId() string
 	TargetDir() string
+}
+
+type LocationContainer interface {
+	AddMain(Location)
+	Main() []Location
+	AddMarginal(Location)
+	Marginal() []Location
+}
+
+type PagesContainer interface {
+	Posts() []Page
+	PostNaviPages() []Page
+	Pages() []Page
+	Marginals() []Page
+	Narratives() []Page
+	NarrativeMarginals() []Page
+}
+
+type Site interface {
+	ConfigContainer
+	LocationContainer
+	PagesContainer
 }
 
 type Context interface {
