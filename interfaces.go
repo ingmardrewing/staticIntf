@@ -49,18 +49,28 @@ type LocationContainer interface {
 }
 
 type PagesContainer interface {
+	Pages() []Page
+	NaviPages() []Page
+	AddPage(Page)
+	AddNaviPage(Page)
+	Variant() string
+}
+
+type PagesContainerCollection interface {
+	AddContainer(PagesContainer)
+	Containers() []PagesContainer
 	Posts() []Page
 	PostNaviPages() []Page
-	Pages() []Page
 	Marginals() []Page
 	Narratives() []Page
 	NarrativeMarginals() []Page
+	Pages() []Page
 }
 
 type Site interface {
 	ConfigContainer
 	LocationContainer
-	PagesContainer
+	PagesContainerCollection
 }
 
 type Context interface {
