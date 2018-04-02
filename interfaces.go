@@ -51,8 +51,12 @@ type LocationContainer interface {
 type PagesContainer interface {
 	Pages() []Page
 	NaviPages() []Page
+	Representationals() []Page
+
 	AddPage(Page)
+	AddRepresentational(Page)
 	AddNaviPage(Page)
+
 	Variant() string
 }
 
@@ -60,6 +64,7 @@ type PagesContainerCollection interface {
 	AddContainer(PagesContainer)
 	Containers() []PagesContainer
 	Posts() []Page
+	Home() []Page
 	PostNaviPages() []Page
 	Marginals() []Page
 	Narratives() []Page
@@ -81,6 +86,7 @@ type Context interface {
 type Renderer interface {
 	AddComponents(...Component)
 	Components() []Component
+	Site() Site
 
 	Pages(...Page) []Page
 	AddPage(Page)
