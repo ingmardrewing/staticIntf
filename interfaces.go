@@ -64,6 +64,7 @@ type PagesContainerCollection interface {
 	AddContainer(PagesContainer)
 	Containers() []PagesContainer
 	Posts() []Page
+	Portfolio() []Page
 	Home() []Page
 	PostNaviPages() []Page
 	Marginals() []Page
@@ -129,7 +130,7 @@ type Location interface {
 
 type PageContent interface {
 	Id() int
-	PublishedTime() string
+	PublishedTime(...string) string
 	Description() string
 	Content() string
 	ImageUrl() string
