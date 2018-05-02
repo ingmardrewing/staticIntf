@@ -63,6 +63,7 @@ type PagesContainer interface {
 type PagesContainerCollection interface {
 	AddContainer(PagesContainer)
 	Containers() []PagesContainer
+	ContainersOrderedByVariants(...string) []PagesContainer
 	Posts() []Page
 	Portfolio() []Page
 	Home() []Page
