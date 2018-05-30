@@ -39,6 +39,8 @@ type ConfigContainer interface {
 	Domain() string
 	DisqusId() string
 	TargetDir() string
+	HomeText() string
+	HomeHeadline() string
 }
 
 type LocationContainer interface {
