@@ -10,6 +10,7 @@ type PageDto interface {
 	Title() string
 	TitlePlain() string
 	ThumbUrl() string
+	MicroThumbUrl() string
 	ImageUrl() string
 	Description() string
 	DisqusId() string
