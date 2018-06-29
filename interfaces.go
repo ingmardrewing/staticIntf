@@ -120,6 +120,7 @@ type Location interface {
 
 	Title(...string) string
 	ThumbnailUrl(...string) string
+	MicroThumbnailUrl(...string) string
 	ExternalLink(...string) string
 
 	// Complete Url including protocol, domain, port (if any),
