@@ -190,11 +190,4 @@ type Component interface {
 	// into a common css file shared by
 	// all rendered (and relevant) html files.
 	GetJs() string
-
-	// Enables Access to the renderer
-	// while visiting a page, for there
-	// might be need to access global data
-	// whilst generating the html nodes.
-	// TODO: Refactor - this is ugly
-	Renderer(...Renderer) Renderer
 }
