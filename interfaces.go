@@ -29,7 +29,7 @@ type ConfigContainer interface {
 	TwitterHandle() string
 	Topic() string
 	Tags() string
-	Site() string
+	SiteName() string
 	CardType() string
 	Section() string
 	FBPage() string
@@ -91,22 +91,9 @@ type Context interface {
 type Renderer interface {
 	AddComponents(...Component)
 	Components() []Component
-	Site() Site
 
 	Pages(...Page) []Page
 	AddPage(Page)
-
-	TwitterHandle() string
-	ContentSection() string
-	ContentTags() string
-	SiteName() string
-	TwitterCardType() string
-	OGType() string
-	FBPageUrl() string
-	TwitterPage() string
-	CssUrl() string
-	Css() string
-	DisqusShortname() string
 
 	MainNavigationLocations() []Location
 	FooterNavigationLocations() []Location
@@ -169,6 +156,10 @@ type Page interface {
 	// a page listing links to other pages, like
 	// blogposts:
 	NavigatedPages(...Page) []Page
+
+	// A reference to the site containing
+	// the page in question
+	Site(...Site) Site
 }
 
 type Component interface {
