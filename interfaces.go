@@ -159,7 +159,7 @@ type Page interface {
 
 	// A reference to the site containing
 	// the page in question
-	Site(...Site) Site
+	Site() Site
 }
 
 type Component interface {
