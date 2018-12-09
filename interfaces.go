@@ -29,7 +29,6 @@ type ConfigContainer interface {
 	TwitterHandle() string
 	Topic() string
 	Tags() string
-	SiteName() string
 	CardType() string
 	Section() string
 	FBPage() string
