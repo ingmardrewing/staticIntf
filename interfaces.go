@@ -93,6 +93,10 @@ type Renderer interface {
 
 	Pages(...Page) []Page
 	AddPage(Page)
+	GetPageBefore(Page) Page
+	GetPageAfter(Page) Page
+	GetFirstPage() Page
+	GetLastPage() Page
 
 	MainNavigationLocations() []Location
 	FooterNavigationLocations() []Location
