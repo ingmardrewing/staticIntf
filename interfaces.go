@@ -60,6 +60,7 @@ type PagesContainer interface {
 	AddNaviPage(Page)
 
 	Variant() string
+	Headline() string
 }
 
 type PagesContainerCollection interface {
@@ -92,7 +93,6 @@ type Renderer interface {
 	Components() []Component
 
 	Pages(...Page) []Page
-	AddPage(Page)
 	GetPageBefore(Page) Page
 	GetPageAfter(Page) Page
 	GetFirstPage() Page
