@@ -26,6 +26,8 @@ type PageDto interface {
 }
 
 type ConfigContainer interface {
+	Domain() string
+	BasePath() string
 	TwitterHandle() string
 	Topic() string
 	Tags() string
@@ -36,7 +38,6 @@ type ConfigContainer interface {
 	RssPath() string
 	RssFilename() string
 	Css() string
-	Domain() string
 	DisqusId() string
 	TargetDir() string
 	HomeText() string
@@ -54,6 +55,11 @@ type PagesContainer interface {
 	Pages() []Page
 	NaviPages() []Page
 	Representationals() []Page
+
+	GetPageBefore(Page) Page
+	GetPageAfter(Page) Page
+	GetFirstPage() Page
+	GetLastPage() Page
 
 	AddPage(Page)
 	AddRepresentational(Page)
@@ -93,13 +99,7 @@ type Renderer interface {
 	Components() []Component
 
 	Pages(...Page) []Page
-	GetPageBefore(Page) Page
-	GetPageAfter(Page) Page
-	GetFirstPage() Page
-	GetLastPage() Page
 
-	MainNavigationLocations() []Location
-	FooterNavigationLocations() []Location
 	Render() []fs.FileContainer
 }
 
@@ -163,6 +163,12 @@ type Page interface {
 	// A reference to the site containing
 	// the page in question
 	Site() Site
+
+	// Return the Link with Domain
+	Link() string
+
+	// Returns the PagesContainer containing the given page
+	Container() PagesContainer
 }
 
 type Component interface {
