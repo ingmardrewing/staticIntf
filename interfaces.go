@@ -74,9 +74,9 @@ type PagesContainerCollection interface {
 	Containers() []PagesContainer
 	ContainersOrderedByVariants(...string) []PagesContainer
 	Posts() []Page
+	PostNaviPages() []Page
 	Portfolio() []Page
 	Home() []Page
-	PostNaviPages() []Page
 	Marginals() []Page
 	Narratives() []Page
 	NarrativeMarginals() []Page
