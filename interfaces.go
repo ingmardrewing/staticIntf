@@ -168,7 +168,7 @@ type Page interface {
 	Link() string
 
 	// Returns the PagesContainer containing the given page
-	Container() PagesContainer
+	Container(...PagesContainer) PagesContainer
 }
 
 type Component interface {
