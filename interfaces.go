@@ -5,6 +5,16 @@ import (
 	"github.com/ingmardrewing/htmlDoc"
 )
 
+const (
+	PAGES              = "pages"
+	BLOG               = "blog"
+	HOME               = "main"
+	PORTFOLIO          = "portfolio"
+	MARGINALS          = "marginal"
+	NARRATIVES         = "narrative"
+	NARRATIVEMARGINALS = "narrativeMarginals"
+)
+
 type PageDto interface {
 	Id() int
 	Title() string
@@ -73,14 +83,8 @@ type PagesContainerCollection interface {
 	AddContainer(PagesContainer)
 	Containers() []PagesContainer
 	ContainersOrderedByVariants(...string) []PagesContainer
-	Posts() []Page
-	PostNaviPages() []Page
-	Portfolio() []Page
-	Home() []Page
-	Marginals() []Page
-	Narratives() []Page
-	NarrativeMarginals() []Page
-	Pages() []Page
+	GetPagesByVariant(string) []Page
+	GetNaviPagesByVariant(string) []Page
 }
 
 type Site interface {
