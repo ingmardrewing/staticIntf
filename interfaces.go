@@ -12,7 +12,7 @@ const (
 	PORTFOLIO          = "portfolio"
 	MARGINALS          = "marginal"
 	NARRATIVES         = "narrative"
-	NARRATIVEMARGINALS = "narrativeMarginals"
+	NARRATIVEMARGINALS = "narrativeMarginal"
 )
 
 type PageDto interface {
@@ -65,11 +65,12 @@ type PagesContainer interface {
 	Pages() []Page
 	NaviPages() []Page
 	Representationals() []Page
+	SiblingPages(Page) []Page
 
 	GetPageBefore(Page) Page
 	GetPageAfter(Page) Page
-	GetFirstPage() Page
-	GetLastPage() Page
+	GetFirstPage(Page) Page
+	GetLastPage(Page) Page
 
 	AddPage(Page)
 	AddRepresentational(Page)
