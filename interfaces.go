@@ -5,6 +5,16 @@ import (
 	"github.com/ingmardrewing/htmlDoc"
 )
 
+const (
+	PAGES              = "pages"
+	BLOG               = "blog"
+	HOME               = "main"
+	PORTFOLIO          = "portfolio"
+	MARGINALS          = "marginal"
+	NARRATIVES         = "narrative"
+	NARRATIVEMARGINALS = "narrativeMarginal"
+)
+
 type PageDto interface {
 	Id() int
 	Title() string
@@ -26,10 +36,11 @@ type PageDto interface {
 }
 
 type ConfigContainer interface {
+	Domain() string
+	BasePath() string
 	TwitterHandle() string
 	Topic() string
 	Tags() string
-	Site() string
 	CardType() string
 	Section() string
 	FBPage() string
@@ -37,7 +48,6 @@ type ConfigContainer interface {
 	RssPath() string
 	RssFilename() string
 	Css() string
-	Domain() string
 	DisqusId() string
 	TargetDir() string
 	HomeText() string
@@ -55,26 +65,27 @@ type PagesContainer interface {
 	Pages() []Page
 	NaviPages() []Page
 	Representationals() []Page
+	SiblingPages(Page) []Page
+
+	GetPageBefore(Page) Page
+	GetPageAfter(Page) Page
+	GetFirstPage(Page) Page
+	GetLastPage(Page) Page
 
 	AddPage(Page)
 	AddRepresentational(Page)
 	AddNaviPage(Page)
 
 	Variant() string
+	Headline() string
 }
 
 type PagesContainerCollection interface {
 	AddContainer(PagesContainer)
 	Containers() []PagesContainer
 	ContainersOrderedByVariants(...string) []PagesContainer
-	Posts() []Page
-	Portfolio() []Page
-	Home() []Page
-	PostNaviPages() []Page
-	Marginals() []Page
-	Narratives() []Page
-	NarrativeMarginals() []Page
-	Pages() []Page
+	GetPagesByVariant(string) []Page
+	GetNaviPagesByVariant(string) []Page
 }
 
 type Site interface {
@@ -91,25 +102,9 @@ type Context interface {
 type Renderer interface {
 	AddComponents(...Component)
 	Components() []Component
-	Site() Site
 
 	Pages(...Page) []Page
-	AddPage(Page)
 
-	TwitterHandle() string
-	ContentSection() string
-	ContentTags() string
-	SiteName() string
-	TwitterCardType() string
-	OGType() string
-	FBPageUrl() string
-	TwitterPage() string
-	CssUrl() string
-	Css() string
-	DisqusShortname() string
-
-	MainNavigationLocations() []Location
-	FooterNavigationLocations() []Location
 	Render() []fs.FileContainer
 }
 
@@ -169,6 +164,16 @@ type Page interface {
 	// a page listing links to other pages, like
 	// blogposts:
 	NavigatedPages(...Page) []Page
+
+	// A reference to the site containing
+	// the page in question
+	Site() Site
+
+	// Return the Link with Domain
+	Link() string
+
+	// Returns the PagesContainer containing the given page
+	Container(...PagesContainer) PagesContainer
 }
 
 type Component interface {
@@ -190,11 +195,4 @@ type Component interface {
 	// into a common css file shared by
 	// all rendered (and relevant) html files.
 	GetJs() string
-
-	// Enables Access to the renderer
-	// while visiting a page, for there
-	// might be need to access global data
-	// whilst generating the html nodes.
-	// TODO: Refactor - this is ugly
-	Renderer(...Renderer) Renderer
 }
