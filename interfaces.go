@@ -15,6 +15,16 @@ const (
 	NARRATIVEMARGINALS = "narrativeMarginal"
 )
 
+type PagesContainerTool interface {
+	GetIndexOfPage(Page) int
+	GetIndexOfNaviPage(Page) int
+	GetLastPage(Page) Page
+	GetFirstPage(Page) Page
+	GetPageBefore(Page) Page
+	GetPageAfter(Page) Page
+	SiblingPages(Page) []Page
+}
+
 type PageDto interface {
 	Id() int
 	Title() string
@@ -65,12 +75,6 @@ type PagesContainer interface {
 	Pages() []Page
 	NaviPages() []Page
 	Representationals() []Page
-	SiblingPages(Page) []Page
-
-	GetPageBefore(Page) Page
-	GetPageAfter(Page) Page
-	GetFirstPage(Page) Page
-	GetLastPage(Page) Page
 
 	AddPage(Page)
 	AddRepresentational(Page)
@@ -83,6 +87,9 @@ type PagesContainer interface {
 type PagesContainerCollection interface {
 	AddContainer(PagesContainer)
 	Containers() []PagesContainer
+}
+
+type PagesContainerCollectionTool interface {
 	ContainersOrderedByVariants(...string) []PagesContainer
 	GetPagesByVariant(string) []Page
 	GetNaviPagesByVariant(string) []Page
