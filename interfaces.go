@@ -87,6 +87,9 @@ type PagesContainer interface {
 type PagesContainerCollection interface {
 	AddContainer(PagesContainer)
 	Containers() []PagesContainer
+}
+
+type PagesContainerCollectionTool interface {
 	ContainersOrderedByVariants(...string) []PagesContainer
 	GetPagesByVariant(string) []Page
 	GetNaviPagesByVariant(string) []Page
