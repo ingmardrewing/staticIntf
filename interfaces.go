@@ -116,14 +116,14 @@ type Renderer interface {
 }
 
 type Location interface {
-	Domain(...string) string
-	PathFromDocRoot(...string) string
-	HtmlFilename(...string) string
+	Domain() string
+	PathFromDocRoot() string
+	HtmlFilename() string
 
-	Title(...string) string
-	ThumbnailUrl(...string) string
-	MicroThumbnailUrl(...string) string
-	ExternalLink(...string) string
+	Title() string
+	ThumbnailUrl() string
+	MicroThumbnailUrl() string
+	ExternalLink() string
 
 	// Complete Url including protocol, domain, port (if any),
 	// path from docroot and filename.
