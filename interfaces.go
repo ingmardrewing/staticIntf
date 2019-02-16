@@ -41,12 +41,9 @@ type PageDto interface {
 	MicroThumbUrl() string
 	ImageUrl() string
 	Description() string
-	DisqusId() string
 	CreateDate() string
 	Content() string
 	Category() string
-	Url() string
-	Domain() string
 	PathFromDocRoot() string
 	FsPath() string
 	HtmlFilename() string
@@ -68,7 +65,6 @@ type ConfigContainer interface {
 	RssPath() string
 	RssFilename() string
 	Css() string
-	DisqusId() string
 	TargetDir() string
 	HomeText() string
 	HomeHeadline() string
@@ -151,7 +147,6 @@ type PageContent interface {
 	Description() string
 	Content() string
 	ImageUrl() string
-	DisqusId() string
 	ThumbBase64() string
 	Category() string
 	GetDoc() *htmlDoc.HtmlDoc
