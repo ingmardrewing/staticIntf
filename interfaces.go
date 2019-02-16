@@ -25,6 +25,14 @@ type PagesContainerTool interface {
 	SiblingPages(Page) []Page
 }
 
+type Image interface {
+	W190() string
+	W390() string
+	W800() string
+	MaxResoultion() string
+	Title() string
+}
+
 type PageDto interface {
 	Id() int
 	Title() string
@@ -33,16 +41,15 @@ type PageDto interface {
 	MicroThumbUrl() string
 	ImageUrl() string
 	Description() string
-	DisqusId() string
 	CreateDate() string
 	Content() string
 	Category() string
-	Url() string
-	Domain() string
 	PathFromDocRoot() string
 	FsPath() string
 	HtmlFilename() string
 	ThumbBase64() string
+	Tags() []string
+	Images() []Image
 }
 
 type ConfigContainer interface {
@@ -58,7 +65,6 @@ type ConfigContainer interface {
 	RssPath() string
 	RssFilename() string
 	Css() string
-	DisqusId() string
 	TargetDir() string
 	HomeText() string
 	HomeHeadline() string
@@ -141,7 +147,6 @@ type PageContent interface {
 	Description() string
 	Content() string
 	ImageUrl() string
-	DisqusId() string
 	ThumbBase64() string
 	Category() string
 	GetDoc() *htmlDoc.HtmlDoc
