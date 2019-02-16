@@ -25,6 +25,14 @@ type PagesContainerTool interface {
 	SiblingPages(Page) []Page
 }
 
+type Image interface {
+	W190() string
+	W390() string
+	W800() string
+	MaxResoultion() string
+	Title() string
+}
+
 type PageDto interface {
 	Id() int
 	Title() string
@@ -43,6 +51,8 @@ type PageDto interface {
 	FsPath() string
 	HtmlFilename() string
 	ThumbBase64() string
+	Tags() []string
+	Images() []Image
 }
 
 type ConfigContainer interface {
