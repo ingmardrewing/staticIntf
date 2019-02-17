@@ -54,6 +54,7 @@ type PageDto interface {
 
 type ConfigContainer interface {
 	Domain() string
+	SvgLogo() string
 	BasePath() string
 	TwitterHandle() string
 	Topic() string
