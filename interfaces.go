@@ -28,8 +28,8 @@ type PagesContainerTool interface {
 type Image interface {
 	Title() string
 
-	W85Square() string
-	W190Square() string
+	W80Square() string
+	W185Square() string
 	W390Square() string
 	W800Square() string
 
