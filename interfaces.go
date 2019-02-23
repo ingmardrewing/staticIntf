@@ -141,14 +141,15 @@ type Location interface {
 }
 
 type PageContent interface {
-	Id() int
 	PublishedTime(...string) string
 	Description() string
 	Content() string
-	ImageUrl() string
-	ThumbBase64() string
 	Category() string
 	GetDoc() *htmlDoc.HtmlDoc
+
+	ImageUrl() string
+	ThumbBase64() string
+	Images() []Image
 }
 
 type Page interface {
