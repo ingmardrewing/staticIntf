@@ -26,28 +26,26 @@ type PagesContainerTool interface {
 }
 
 type Image interface {
-	W190() string
-	W390() string
-	W800() string
-	MaxResoultion() string
 	Title() string
+
+	W80Square() string
+	W185Square() string
+	W390Square() string
+	W800Square() string
+
+	W800() string
+	W1600() string
+	MaxResolution() string
 }
 
 type PageDto interface {
-	Id() int
 	Title() string
-	TitlePlain() string
-	ThumbUrl() string
-	MicroThumbUrl() string
-	ImageUrl() string
 	Description() string
-	CreateDate() string
 	Content() string
 	Category() string
+	CreateDate() string
 	PathFromDocRoot() string
-	FsPath() string
-	HtmlFilename() string
-	ThumbBase64() string
+	Filename() string
 	Tags() []string
 	Images() []Image
 }
