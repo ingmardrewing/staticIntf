@@ -67,6 +67,10 @@ type ConfigContainer interface {
 	TargetDir() string
 	HomeText() string
 	HomeHeadline() string
+	KeyWords() string
+	Subject() string
+	Author() string
+	Description() string
 }
 
 type LocationContainer interface {
