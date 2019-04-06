@@ -68,7 +68,7 @@ type PageDto interface {
 	Images() []Image
 }
 
-type ConfigContainer interface {
+type GlobalsContainer interface {
 	Domain() string
 	SvgLogo() string
 	BasePath() string
@@ -123,7 +123,7 @@ type PagesContainerCollectionTool interface {
 }
 
 type Site interface {
-	ConfigContainer
+	GlobalsContainer
 	LocationsContainer
 	PagesContainerCollection
 }
