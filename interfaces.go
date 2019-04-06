@@ -15,6 +15,24 @@ const (
 	NARRATIVEMARGINALS = "narrativeMarginal"
 )
 
+type PageMaker interface {
+	Title(string)
+	Description(string)
+	Content(string)
+	Category(string)
+	CreateDate(string)
+	PathFromDocRoot(string)
+	FileName(string)
+	Tags(...string)
+	Images(...Image)
+
+	Site(Site)
+
+	NavigatedPages(...Page)
+
+	Make() Page
+}
+
 type PagesContainerTool interface {
 	GetIndexOfPage(Page) int
 	GetIndexOfNaviPage(Page) int
@@ -73,7 +91,7 @@ type ConfigContainer interface {
 	Description() string
 }
 
-type LocationContainer interface {
+type LocationsContainer interface {
 	AddMain(Location)
 	Main() []Location
 	AddMarginal(Location)
@@ -106,7 +124,7 @@ type PagesContainerCollectionTool interface {
 
 type Site interface {
 	ConfigContainer
-	LocationContainer
+	LocationsContainer
 	PagesContainerCollection
 }
 
