@@ -47,8 +47,11 @@ type Image interface {
 	Title() string
 
 	W80Square() string
+	W100Square() string
 	W185Square() string
+	W200Square() string
 	W390Square() string
+	W400Square() string
 	W800Square() string
 
 	W800() string
