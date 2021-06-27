@@ -169,6 +169,7 @@ type PageContent interface {
 	PublishedTime(...string) string
 	Description() string
 	Content() string
+	BodyText() string
 	Category() string
 	GetDoc() *htmlDoc.HtmlDoc
 
