@@ -48,11 +48,12 @@ type Image interface {
 
 	W80Square() string
 	W100Square() string
-	W185Square() string
+	W190Square() string
 	W200Square() string
 	W390Square() string
 	W400Square() string
 	W800Square() string
+	W1600Square() string
 
 	W800() string
 	W1600() string
